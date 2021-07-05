@@ -1,0 +1,20 @@
+.libreria{
+    /* display: flex; */
+    /* justify-content: center; */
+    width: 70%;
+    margin-top: 10px;
+    margin-left: 60px;
+    position: absolute;
+    background: seagreen;
+
+}
+ul{
+    list-style-type: square;
+    list-style-image: url(../../../assets/img/epub.ico);
+    list-style-position: inside;
+}
+li, a{
+    line-height: 25px;
+    font-size: 15px;
+    color: black;
+}

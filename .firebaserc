@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "gestor-b41da": {
+      "hosting": {
+        "Gestor-Libros": [
+          "gestor-b41da"
+        ]
+      }
+    }
+  }
+}
