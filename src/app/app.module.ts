@@ -3,11 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { LibreriaComponent } from './components/libreria/libreria.component';
+import { LibreriaListaComponent } from './components/libreria/libreria-lista/libreria-lista.component';
+import { LibroComponent } from './components/libreria/libro/libro.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SliderComponent } from './components/slider/slider.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { FormularioComponent } from './components/formulario/formulario.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,36 +18,46 @@ import {MatInputModule} from '@angular/material/input';
 
 // Firebase
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire'; 
+import { AngularFireDatabaseModule} from '@angular/fire/database'
 import { environment } from 'src/environments/environment';
+
+import { LibreriaService } from './servicio/libreria.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
     AppComponent,
     LibreriaComponent,
+    LibreriaListaComponent,
+    LibroComponent,
     HeaderComponent,
-    SliderComponent,
     SidebarComponent,
-    FormularioComponent,
-    FooterComponent,
     HomeComponent,
-    RegistroComponent
+    RegistroComponent,
+    LibreriaListaComponent,
+    LibroComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireStorageModule,
+    AngularFireDatabaseModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
 
   ],
-  providers: [
-    {provide: StorageBucket, useValue:'gs://gestor-b41da.appspot.com'}
+  providers: [ 
+    LibreriaService
   ],
   bootstrap: [AppComponent]
 })
